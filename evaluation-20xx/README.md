@@ -1,6 +1,6 @@
-# Scoring code for the George B. Moody PhysioNet Challenge 2023
+# Scoring code for the George B. Moody PhysioNet Challenge 20xx
 
-This repository contains the Python and MATLAB evaluation code for the George B. Moody PhysioNet Challenge 2023.
+This repository contains the Python and MATLAB evaluation code for the George B. Moody PhysioNet Challenge 20xx.
 
 The `evaluate_model` script evaluates the outputs of your models using the evaluation metric that is described on the [webpage](https://physionetchallenges.org/20x/) for the 20xx Challenge. This script reports multiple evaluation metrics, so check the [scoring section](https://physionetchallenges.org/20xx/#scoring) of the webpage to see how we evaluate and rank your models.
 
