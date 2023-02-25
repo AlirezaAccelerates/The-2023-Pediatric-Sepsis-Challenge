@@ -1,18 +1,18 @@
 import numpy as np
 
 
-def compute_confusion_matrix(true, pred):
+def compute_confusion_matrix(labels, outputs):
     '''
     Compute confusion matrix for model's predictions
     NOTE: This for the binary case
     '''
-    true = true.astype(int)
-    pred = pred.astype(int)
+    labels = labels.astype(int)
+    outputs = outputs.astype(int)
 
     cm = np.zeros((2, 2))
     
-    for i in range(len(true)):
-        cm[true[i]][pred[i]] += 1
+    for i in range(len(labels)):
+        cm[labels[i]][outputs[i]] += 1
 
     tn = cm[0][0]
     fp = cm[0][1]
@@ -36,11 +36,11 @@ def compute_sensitivity(tp, fn):
     return tp / (tp + fn)
 
 
-def evaluate_model(true, pred):
+def evaluate_model(labels, outputs):
     '''
     Evaluate model performance based on metricx
     '''
-    tn, fp, fn, tp = compute_confusion_matrix(true, pred)
+    tn, fp, fn, tp = compute_confusion_matrix(labels, outputs)
     sens = compute_sensitivity(tp, fp)
     ppv = compute_ppv(tp, fn)
 
