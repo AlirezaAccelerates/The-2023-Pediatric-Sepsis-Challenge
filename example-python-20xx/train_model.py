@@ -27,4 +27,6 @@ if __name__ == '__main__':
     else:
         verbose = 1
 
-    train_challenge_model(data_folder, model_folder, verbose) ### Teams: Implement this function!!!
+    train_challenge_model(data_folder, model_folder, verbose) ### Teams: Implement this function!
+    
+    print("Done!")
