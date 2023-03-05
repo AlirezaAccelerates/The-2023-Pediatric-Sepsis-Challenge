@@ -8,9 +8,9 @@ import os, numpy as np, scipy as sp, scipy.io
 
 ### Challenge data I/O functions
 
-def load_challenge_data(file_location):
+def load_challenge_data(data_folder):
   
-    with open(file_location, 'r') as f:
+    with open(data_folder, 'r') as f:
         header = f.readline().strip()
         column_names = header.split('|')
         data = np.genfromtxt(f, delimiter='|', missing_values='NA')
