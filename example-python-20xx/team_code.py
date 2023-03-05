@@ -36,3 +36,18 @@ def train_challenge_model(data_folder, model_folder, verbose):
         
     # Create a folder for the model if it does not already exist.
     os.makedirs(model_folder, exist_ok=True)
+    
+    
+    # Train the models.
+    if verbose >= 1:
+        print('Training the Challenge models on the Challenge data...')
+
+###########################################
+                Hari
+    ##############################
+
+    # Save the models.
+    save_challenge_model(model_folder, imputer, prediction_model)
+
+    if verbose >= 1:
+        print('Done!')
