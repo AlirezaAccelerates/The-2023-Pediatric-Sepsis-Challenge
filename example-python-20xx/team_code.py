@@ -26,8 +26,9 @@ import joblib
 def train_challenge_model(data_folder, model_folder, verbose):
     # Find data files.
     if verbose >= 1:
-        print('Finding the Challenge data...')
-
+        print('Extracting features and labels from the Challenge data...')
+        
+    data, label = load_challenge_data(file_location)
     num_patients = len(data)
 
     if num_patients==0:
