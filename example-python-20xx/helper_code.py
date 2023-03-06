@@ -22,3 +22,35 @@ def load_challenge_data(data_folder):
         data = data[:, :-1]
 
     return data, label
+  
+  
+### Other helper functions
+
+# Check if a variable is a number or represents a number.
+def is_number(x):
+    try:
+        float(x)
+        return True
+    except (ValueError, TypeError):
+        return False
+
+# Check if a variable is an integer or represents an integer.
+def is_integer(x):
+    if is_number(x):
+        return float(x).is_integer()
+    else:
+        return False
+
+# Check if a variable is a finite number or represents a finite number.
+def is_finite_number(x):
+    if is_number(x):
+        return np.isfinite(float(x))
+    else:
+        return False
+
+# Check if a variable is a NaN (not a number) or represents a NaN.
+def is_nan(x):
+    if is_number(x):
+        return np.isnan(float(x))
+    else:
+        return False
