@@ -54,3 +54,25 @@ def is_nan(x):
         return np.isnan(float(x))
     else:
         return False
+
+# Remove any quotes, brackets (for singleton arrays), and/or invisible characters.
+def remove_extra_characters(x):
+    return str(x).replace('"', '').replace("'", "").replace('[', '').replace(']', '').replace(' ', '').strip()
+
+# Sanitize boolean values, e.g., from the Challenge outputs.
+def sanitize_boolean_value(x):
+    x = remove_extra_characters(x)
+    if (is_finite_number(x) and float(x)==0) or (x in ('False', 'false', 'F', 'f')):
+        return 0
+    elif (is_finite_number(x) and float(x)==1) or (x in ('True', 'true', 'T', 't')):
+        return 1
+    else:
+        return float('nan')
+
+# Santize scalar values, e.g., from the Challenge outputs.
+def sanitize_scalar_value(x):
+    x = remove_extra_characters(x)
+    if is_number(x):
+        return float(x)
+    else:
+        return float('nan')
