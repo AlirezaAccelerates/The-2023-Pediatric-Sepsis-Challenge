@@ -69,3 +69,14 @@ def run_challenge_models(model, data_folder, patient_id, verbose):
 
 
 
+################################################################################
+#
+# Optional functions. You can change or remove these functions and/or add new functions.
+#
+################################################################################
+
+# Save your trained model.
+def save_challenge_model(model_folder, imputer, prediction_model):
+    #####################################
+    Hari
+    ##################################
