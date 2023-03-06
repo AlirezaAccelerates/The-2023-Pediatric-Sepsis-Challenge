@@ -65,8 +65,15 @@ def run_challenge_models(model, data_folder, patient_id, verbose):
 
     # Load data.
     data, label = load_challenge_data(data_folder)
+    
+    # Impute missing data.
+    features = imputer.transform(data)
 
+    # Apply models to features.
+    prediction_binary = prediction_model.predict(features)[0]
+    prediction_probability = prediction_model.predict_proba(data)[0, 1]
 
+    return prediction_binary, prediction_probability
 
 
 ################################################################################
