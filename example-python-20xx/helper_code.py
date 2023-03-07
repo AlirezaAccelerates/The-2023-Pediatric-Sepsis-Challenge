@@ -19,11 +19,11 @@ def load_challenge_data(data_folder):
     if column_names[-1] == 'inhospital_mortality' and column_names[0] ==:
         features = column_names[1:-1]
         label = data[:,-1]
-        patient_id = data[:,0]
+        patient_ids = data[:,0]
         data = data[:, 1:-1]
         
 
-    return patient_id, data, label, features
+    return patient_ids, data, label, features
   
  
   # Save the Challenge outputs for one file.
