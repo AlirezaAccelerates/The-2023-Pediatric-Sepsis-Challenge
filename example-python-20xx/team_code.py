@@ -24,7 +24,7 @@ import joblib
 
 # Train your model.
 def train_challenge_model(data_folder, model_folder, verbose):
-    # Find data files.
+    # Find the Challenge data.
     if verbose >= 1:
         print('Extracting features and labels from the Challenge data...')
         
