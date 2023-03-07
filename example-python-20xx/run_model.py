@@ -39,3 +39,24 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     # Run the team's model on the Challenge data.
     if verbose >= 1:
         print('Running the Challenge models on the Challenge data...')
+    
+    # Allow or disallow the models to fail on parts of the data; this can be helpful for debugging.
+    try:
+        prediction_binary, prediction_probability = run_challenge_models(model, data_folder, patient_id, verbose) ### Teams: Implement this function!!!
+    except:
+        if allow_failures:
+            if verbose >= 2:
+                print('... failed.')
+                prediction_binary, prediction_probability = float('nan'), float('nan')
+            else:
+                raise
+
+        # Save Challenge outputs.
+
+        # Create a folder for the Challenge outputs if it does not already exist.
+        os.makedirs(os.path.join(output_folder, patient_id), exist_ok=True)                              #??
+        output_file = os.path.join(output_folder, patient_id, patient_id + '.txt')                       #??
+        save_challenge_outputs(output_file, patient_id, outcome_binary, outcome_probability, cpc)        #??
+
+    if verbose >= 1:
+        print('Done!')
