@@ -59,7 +59,7 @@ def load_challenge_models(model_folder, verbose):
     filename = os.path.join(model_folder, 'models.sav')
     return joblib.load(filename)
 
-def run_challenge_models(model, data_folder, patient_id, verbose):
+def run_challenge_model(model, data_folder, verbose):
     imputer = model['imputer']
     prediction_model = model['prediction_model']
 
