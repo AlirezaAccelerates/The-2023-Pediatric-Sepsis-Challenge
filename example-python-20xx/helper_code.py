@@ -35,9 +35,9 @@ def save_challenge_outputs(data_folder, prediction_binary, prediction_probabilit
     
     if data_folder is not None:
       with open(data_folder, 'w') as f:
-          f.write('PredictedProbability|PredictedBinary\n')
-          for (p, b) in zip(prediction_probability, prediction_binary):
-              f.write('%g|%d\n' % (i, p, b))
+          f.write('PatientID|PredictedProbability|PredictedBinary\n')
+          for (i, p, b) in zip(patient_ids, prediction_probability, prediction_binary):
+              f.write('%d|%g|%d\n' % (i, p, b))
   
 
 ### Other helper functions
