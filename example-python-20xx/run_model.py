@@ -42,7 +42,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     
     # Allow or disallow the models to fail on parts of the data; this can be helpful for debugging.
     try:
-        prediction_binary, prediction_probability = run_challenge_models(model, data_folder, patient_id, verbose) ### Teams: Implement this function!!!
+        prediction_binary, prediction_probability = run_challenge_model(model, data_folder, verbose) ### Teams: Implement this function!!!
     except:
         if allow_failures:
             if verbose >= 2:
