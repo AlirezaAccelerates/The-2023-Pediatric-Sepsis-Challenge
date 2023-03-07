@@ -35,3 +35,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
         
     # Create a folder for the model if it does not already exist.
     os.makedirs(model_folder, exist_ok=True)
+    
+    # Run the team's model on the Challenge data.
+    if verbose >= 1:
+        print('Running the Challenge models on the Challenge data...')
