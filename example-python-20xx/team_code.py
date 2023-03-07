@@ -60,8 +60,8 @@ def load_challenge_models(model_folder, verbose):
     return joblib.load(filename)
 
 def run_challenge_models(model, data_folder, patient_id, verbose):
-    imputer = models['imputer']
-    prediction_model = models['prediction_model']
+    imputer = model['imputer']
+    prediction_model = model['prediction_model']
 
     # Load data.
     data, label = load_challenge_data(data_folder)
