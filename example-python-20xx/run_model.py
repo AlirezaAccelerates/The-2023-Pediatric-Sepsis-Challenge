@@ -20,7 +20,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
         print('Loading the Challenge models...')
 
     # You can use this function to perform tasks, such as loading your models, that you only need to perform once.
-    models = load_challenge_models(model_folder, verbose) ### Teams: Implement this function!!!
+    models = load_challenge_model(model_folder, verbose) ### Teams: Implement this function!!!
     
     
     # Find the Challenge data.
