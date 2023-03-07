@@ -16,7 +16,7 @@ def load_challenge_data(data_folder):
         data = np.genfromtxt(f, delimiter='|', missing_values='NA')
         
     # Ignore inhospital_mortality column if present.
-    if column_names[-1] == 'inhospital_mortality' and column_names[0] ==:
+    if column_names[-1] == 'inhospital_mortality' and column_names[0] == 'studyid_adm':
         features = column_names[1:-1]
         label = data[:,-1]
         patient_ids = data[:,0]
