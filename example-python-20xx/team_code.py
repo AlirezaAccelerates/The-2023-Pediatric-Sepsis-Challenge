@@ -28,8 +28,8 @@ def train_challenge_model(data_folder, model_folder, verbose):
     if verbose >= 1:
         print('Extracting features and labels from the Challenge data...')
         
-    data, label = load_challenge_data(data_folder, model_folder)
-    num_patients = len(data)
+    patient_ids, data, label, features = load_challenge_data(data_folder, model_folder)
+    num_patients = len(patient_ids)
 
     if num_patients==0:
         raise FileNotFoundError('No data was provided.')
