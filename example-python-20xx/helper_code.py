@@ -16,14 +16,30 @@ def load_challenge_data(data_folder):
         data = np.genfromtxt(f, delimiter='|', missing_values='NA')
         
     # Ignore inhospital_mortality column if present.
-    if column_names[-1] == 'inhospital_mortality':
-        column_names = column_names[:-1]
-        label = column_names[-1]
-        data = data[:, :-1]
+    if column_names[-1] == 'inhospital_mortality' and column_names[0] ==:
+        features = column_names[1:-1]
+        label = data[:,-1]
+        patient_id = data[:,0]
+        data = data[:, 1:-1]
+        
 
-    return data, label
+    return patient_id, data, label, features
   
+ 
+  # Save the Challenge outputs for one file.
+def save_challenge_outputs(data_folder, prediction_binary, prediction_probability):
+    
+    # Sanitize values, e.g., in case they are a singleton array.
+    prediction_binary = sanitize_boolean_value(prediction_binary)
+    prediction_probability = sanitize_scalar_value(prediction_probability)
+    
+    if data_folder is not None:
+      with open(data_folder, 'w') as f:
+          f.write('PredictedProbability|PredictedBinary\n')
+          for (p, b) in zip(prediction_probability, prediction_binary):
+              f.write('%g|%d\n' % (i, p, b))
   
+
 ### Other helper functions
 
 # Check if a variable is a number or represents a number.
