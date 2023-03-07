@@ -27,14 +27,14 @@ def load_challenge_data(data_folder):
   
  
   # Save the Challenge outputs for one file.
-def save_challenge_outputs(data_folder, patient_ids, prediction_binary, prediction_probability):
+def save_challenge_outputs(output_folder, patient_ids, prediction_binary, prediction_probability):
     
     # Sanitize values, e.g., in case they are a singleton array.
     prediction_binary = sanitize_boolean_value(prediction_binary)
     prediction_probability = sanitize_scalar_value(prediction_probability)
     
-    if data_folder is not None:
-      with open(data_folder, 'w') as f:
+    if output_folder is not None:
+      with open(output_folder, 'w') as f:
           f.write('PatientID|PredictedProbability|PredictedBinary\n')
           for (i, p, b) in zip(patient_ids, prediction_probability, prediction_binary):
               f.write('%d|%g|%d\n' % (i, p, b))
