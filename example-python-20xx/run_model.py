@@ -27,8 +27,8 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     if verbose >= 1:
         print('Extracting features and labels from the Challenge data...')
         
-    data, label = load_challenge_data(data_folder, model_folder)
-    num_patients = len(data)
+    patient_ids, data, label, features = load_challenge_data(data_folder, model_folder)
+    num_patients = len(patient_ids)
 
     if num_patients==0:
         raise FileNotFoundError('No data was provided.')
@@ -42,7 +42,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     
     # Allow or disallow the models to fail on parts of the data; this can be helpful for debugging.
     try:
-        prediction_binary, prediction_probability = run_challenge_model(model, data_folder, verbose) ### Teams: Implement this function!!!
+        patient_ids, prediction_binary, prediction_probability = run_challenge_model(model, data_folder, verbose) ### Teams: Implement this function!!!
     except:
         if allow_failures:
             if verbose >= 2:
