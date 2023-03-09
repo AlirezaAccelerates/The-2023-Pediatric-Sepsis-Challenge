@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 % This file contains functions for evaluating models for the 2023 Challenge. You can run it as follows:
 %
-%   evaluate_model(labels, outputs, scores.csv)
+%   evaluate_model(labels, outputs, results)
 %
 % where 'labels' is a folder containing files with the labels, 'outputs' is a folder containing files with the outputs from your
-% model, and 'scores.csv' (optional) is a collection of scores for the model outputs.
+% model, and 'results' (optional) is the folder to store the collection of scores for the model outputs.
 %
 % Each label or output file must have the format described on the Challenge webpage. The scores for the algorithm outputs include
 % the area under the receiver-operating characteristic curve (AUROC), the area under the recall-precision curve (AUPRC), macro
@@ -38,6 +37,3 @@ function evaluate_model(labels, outputs, results)
     [~, output] = system(command);
     fprintf(output);
 end
-=======
-%
->>>>>>> 38f8d0b0e43743ae7aacfff3d51721c7e8e69372
