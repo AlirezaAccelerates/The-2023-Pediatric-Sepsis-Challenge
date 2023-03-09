@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 % This file contains functions for evaluating models for the 2023 Challenge. You can run it as follows:
 %
 %   evaluate_model(labels, outputs, scores.csv)
@@ -37,3 +38,6 @@ function evaluate_model(labels, outputs, results)
     [~, output] = system(command);
     fprintf(output);
 end
+=======
+%
+>>>>>>> 38f8d0b0e43743ae7aacfff3d51721c7e8e69372
