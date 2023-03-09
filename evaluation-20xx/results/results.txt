@@ -1,3 +1,0 @@
-Challenge Score: 0.034
-Sensitivity: 0.034
-Positive Predictive Value: 0.459
