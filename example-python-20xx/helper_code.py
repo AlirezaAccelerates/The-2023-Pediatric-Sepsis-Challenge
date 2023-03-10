@@ -22,11 +22,10 @@ def load_challenge_data(data_folder):
         patient_ids = data[:,0]
         data = data[:, 1:-1]
         
-
     return patient_ids, data, label, features
   
  
-  # Save the Challenge outputs for one file.
+# Save the Challenge outputs for one file.
 def save_challenge_outputs(output_folder, patient_ids, prediction_binary, prediction_probability):
     
     # Sanitize values, e.g., in case they are a singleton array.
