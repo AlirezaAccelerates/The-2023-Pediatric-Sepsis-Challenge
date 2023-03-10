@@ -1,8 +1,26 @@
+#!/usr/bin/env python
+
+# Do *not* edit this script. Changes will be discarded so that we can process the models consistently.
+
+# This file contains functions for evaluating models for the Challenge. You can run it as follows:
+#
+#   python evaluate_model.py labels outputs scores.csv
+#
+# where 'labels' is a folder containing files with the labels, 'outputs' is a folder containing files with the outputs from your
+# model, and 'scores.csv' (optional) is a collection of scores for the model outputs.
+#
+# Each label or output file must have the format described on the Challenge webpage. The scores for the algorithm outputs are also
+# described on the Challenge webpage.
+
+import os, os.path, sys, numpy as np
+from helper_code import *
+
+##########????
 import argparse
 from helper_code import load_challenge_labels, load_challenge_outputs
 import numpy as np
 import os
-
+##############???
 
 def compute_confusion_matrix(labels, outputs):
     '''
