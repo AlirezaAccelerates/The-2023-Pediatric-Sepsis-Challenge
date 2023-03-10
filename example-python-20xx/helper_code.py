@@ -39,6 +39,20 @@ def save_challenge_outputs(output_folder, patient_ids, prediction_binary, predic
               f.write('%d|%g|%d\n' % (i, p, b))
   
 
+# Load the Challenge predictions for all of the patients.
+def load_challenge_predictions(folder):
+    with open(folder, 'r') as f:
+        header = f.readline().strip()
+        column_names = header.split('|')
+        predictions = np.genfromtxt(f, delimiter='|')
+    
+    patient_ids = predictions[:,0].astype(int)
+    prediction_probability = predictions[:,1]
+    prediction_binary = predictions[:,2].astype(int)
+    
+    return patient_ids, prediction_probability, prediction_binary
+  
+  
 ### Other helper functions
 
 # Check if a variable is a number or represents a number.
