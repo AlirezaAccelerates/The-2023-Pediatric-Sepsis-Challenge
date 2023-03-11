@@ -11,6 +11,7 @@
 
 from helper_code import *
 import numpy as np, os, sys
+import pandas as pd
 import mne
 from sklearn.impute import SimpleImputer                  
 from sklearn.ensemble import RandomForestClassifier
@@ -41,8 +42,9 @@ def train_challenge_model(data_folder, model_folder, verbose):
     # Train the models.
     if verbose >= 1:
         print('Training the Challenge models on the Challenge data...')
+    
+    data = pd.get_dummies(data)
         
-
     # Define parameters for random forest classifier and regressor.
     n_estimators   = 123  # Number of trees in the forest.
     max_leaf_nodes = 456  # Maximum number of leaf nodes in each tree.
@@ -52,9 +54,9 @@ def train_challenge_model(data_folder, model_folder, verbose):
     imputer = SimpleImputer().fit(data)
 
     # Train the models.
-    features = imputer.transform(data)
+    data_imputed = imputer.transform(data)
     prediction_model = RandomForestClassifier(
-        n_estimators=n_estimators, max_leaf_nodes=max_leaf_nodes, random_state=random_state).fit(data, label.ravel())
+        n_estimators=n_estimators, max_leaf_nodes=max_leaf_nodes, random_state=random_state).fit(data_imputed, label.ravel())
 
 
     # Save the models.
