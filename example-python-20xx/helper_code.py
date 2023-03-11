@@ -5,24 +5,19 @@
 # Check the example code to see how to import these functions to your code.
 
 import os, numpy as np, scipy as sp, scipy.io
+import pandas as pd
 
 ### Challenge data I/O functions
 
 def load_challenge_data(data_folder):
   
-    with open(data_folder, 'r') as f:
-        header = f.readline().strip()
-        column_names = header.split('|')
-        data = np.genfromtxt(f, delimiter='|', missing_values='NA')
+        data = pd.read_csv(data_folder)
+        label = data['inhospital_mortality']
+        patient_ids = data['studyid_adm']
+        data = data.drop(['studyid_adm','inhospital_mortality'], axis=1)
+        features = data.columns
         
-    # Ignore inhospital_mortality column if present.
-    if column_names[-1] == 'inhospital_mortality' and column_names[0] == 'studyid_adm':
-        features = column_names[1:-1]
-        label = data[:,-1]
-        patient_ids = data[:,0]
-        data = data[:, 1:-1]
-        
-    return patient_ids, data, label, features
+        return patient_ids, data, label, features
   
  
 # Save the Challenge outputs for one file.
