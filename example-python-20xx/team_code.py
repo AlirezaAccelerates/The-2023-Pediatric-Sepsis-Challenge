@@ -12,8 +12,8 @@
 from helper_code import *
 import numpy as np, os, sys
 import mne
-from sklearn.impute import SimpleImputer                      #??
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor           #??
+from sklearn.impute import SimpleImputer                  
+from sklearn.ensemble import RandomForestClassifier
 import joblib
 
 ################################################################################
@@ -32,7 +32,7 @@ def train_challenge_model(data_folder, model_folder, verbose):
     num_patients = len(patient_ids)
 
     if num_patients==0:
-        raise FileNotFoundError('No data was provided.')
+        raise FileNotFoundError('No data is provided.')
         
     # Create a folder for the model if it does not already exist.
     os.makedirs(model_folder, exist_ok=True)
@@ -41,32 +41,7 @@ def train_challenge_model(data_folder, model_folder, verbose):
     # Train the models.
     if verbose >= 1:
         print('Training the Challenge models on the Challenge data...')
-
-    features = list()
-    predictions = list()
-
-    for i in range(num_patients):
-        if verbose >= 2:
-            print('    {}/{}...'.format(i+1, num_patients))
-
-        # Load data.
-        patient_id = patient_ids[i]
-        patient_metadata, recording_metadata, recording_data = load_challenge_data(data_folder, patient_id)
-
-        # Extract features.
-        current_features = get_features(patient_metadata, recording_metadata, recording_data)
-        features.append(current_features)
-
-        # Extract labels.
-        current_prediction = get_prediction(patient_metadata)
-        predictions.append(current_prediction)
-
-    features = np.vstack(features)
-    predictions = np.vstack(predictions)
-
-    # Train the models.
-    if verbose >= 1:
-        print('Training the Challenge models on the Challenge data...')
+        
 
     # Define parameters for random forest classifier and regressor.
     n_estimators   = 123  # Number of trees in the forest.
@@ -74,12 +49,12 @@ def train_challenge_model(data_folder, model_folder, verbose):
     random_state   = 789  # Random state; set for reproducibility.
 
     # Impute any missing features; use the mean value by default.
-    imputer = SimpleImputer().fit(features)
+    imputer = SimpleImputer().fit(data)
 
     # Train the models.
-    features = imputer.transform(features)
+    features = imputer.transform(data)
     prediction_model = RandomForestClassifier(
-        n_estimators=n_estimators, max_leaf_nodes=max_leaf_nodes, random_state=random_state).fit(features, predictions.ravel())
+        n_estimators=n_estimators, max_leaf_nodes=max_leaf_nodes, random_state=random_state).fit(data, label.ravel())
 
 
     # Save the models.
@@ -121,5 +96,5 @@ def run_challenge_model(model, data_folder, verbose):
 # Save your trained model.
 def save_challenge_model(model_folder, imputer, prediction_model):
     d = {'imputer': imputer, 'prediction_model': prediction_model}
-    filename = os.path.join(model_folder, 'models.sav')
+    filename = os.path.join(model_folder, 'model.sav')
     joblib.dump(d, filename, protocol=0)
