@@ -22,13 +22,28 @@ import numpy as np
 import os
 ##############???
 
-def compute_confusion_matrix(labels, outputs):
-    '''
-    Compute confusion matrix for model's predictions
-    NOTE: This for the binary case
-    '''
+# Evaluate the models.
+def evaluate_model(label_folder, output_folder):
+    # Load labels and model outputs.
+    _, _, label, _ = load_challenge_data(data_folder)
+    patient_ids, prediction_probability, prediction_binary = load_challenge_predictions(folder)
+    
+    # Evaluate the models.
+    tn, fp, fn, tp = compute_confusion_matrix(label, prediction_binary)
+    sensitivity = compute_sensitivity(tp, fp)
+    ppv = compute_ppv(tp, fn)
+    accuracy = compute_accuracy(tn, fp, fn, tp)
+
+    score = challenge_score(sensitivity, ppv)
+
+    return score, sensitivity, ppv, accuracy
+
+
+# Compute confusion matrix for model's predictions for the binary case
+def compute_confusion_matrix(labels, predictions):
+
     labels = np.array(labels).astype(int)
-    outputs = np.array(outputs).astype(int)
+    predictions = np.array(predictions).astype(int)
 
     cm = np.zeros((2, 2))
     
@@ -47,35 +62,21 @@ def compute_confusion_matrix(labels, outputs):
     return tn, fp, fn, tp
 
 
+# Compute positive predictive value (PPV).
 def compute_ppv(tp, fp):
-    '''
-    Compute positive predictive value (PPV) for model's predictions
-    '''
     return tp / (tp + fp)
 
-
+# Compute sensitivity. 
 def compute_sensitivity(tp, fn):
-    '''
-    Compute the sensitivity of the model's predictions
-    '''
     return tp / (tp + fn)
 
+# Compute challenge score .
+def challenge_score(sensitivity, ppv):
+    return min(sensitivity, ppv)
 
-def evaluate_model(labels_folder, outputs_folder):
-    '''
-    Evaluate model performance based on metricx
-    '''
-    # Load labels and model outputs
-    labels = load_challenge_labels(labels_folder)
-    outputs = load_challenge_outputs(outputs_folder)
-
-    tn, fp, fn, tp = compute_confusion_matrix(labels, outputs)
-    sensitivity = compute_sensitivity(tp, fp)
-    ppv = compute_ppv(tp, fn)
-
-    challenge_score = min(sensitivity, ppv)
-
-    return challenge_score, sensitivity, ppv
+# Compute accuracy.
+def compute_accuracy(tn, fp, fn, tp):
+    return (tp + tn) / (tn + fp + fn + tp)
 
 
 if __name__ == "__main__":
@@ -88,7 +89,7 @@ if __name__ == "__main__":
     os.makedirs(args['results'], exist_ok=True)
     
     # Compute the scores for the model outputs.
-    challenge_score, sensitivity, ppv = evaluate_model(args['labels'], args['outputs'])
+    score, sensitivity, ppv, accuracy = evaluate_model(args['labels'], args['outputs'])
 
     # Print results and write to file
     print(f"Challenge Score: {challenge_score:.3f}")
