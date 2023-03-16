@@ -13,20 +13,15 @@
 # described on the Challenge webpage.
 
 import os, os.path, sys, numpy as np
+import argparse
 from helper_code import *
 
-##########????
-import argparse
-from helper_code import load_challenge_labels, load_challenge_outputs
-import numpy as np
-import os
-##############???
 
 # Evaluate the models.
 def evaluate_model(label_folder, output_folder):
     # Load labels and model outputs.
-    _, _, label, _ = load_challenge_data(data_folder)
-    patient_ids, prediction_probability, prediction_binary = load_challenge_predictions(folder)
+    _, _, label, _ = load_challenge_data(label_folder)
+    patient_ids, prediction_probability, prediction_binary = load_challenge_predictions(output_folder)
     
     # Evaluate the models.
     tn, fp, fn, tp = compute_confusion_matrix(label, prediction_binary)
@@ -48,7 +43,7 @@ def compute_confusion_matrix(labels, predictions):
     cm = np.zeros((2, 2))
     
     for i in range(len(labels)):
-        cm[labels[i]][outputs[i]] += 1
+        cm[labels[i]][predictions[i]] += 1
 
     # True Negatives
     tn = cm[0][0]
@@ -92,11 +87,13 @@ if __name__ == "__main__":
     score, sensitivity, ppv, accuracy = evaluate_model(args['labels'], args['outputs'])
 
     # Print results and write to file
-    print(f"Challenge Score: {challenge_score:.3f}")
+    print(f"Challenge Score: {score:.3f}")
     print(f"Sensitivity: {sensitivity:.3f}")
     print(f"Positive Predictive Value: {ppv:.3f}")
+    print(f"Accuracy: {accuracy:.3f}")
 
     with open(f"{args['results']}/results.txt", 'w') as f:
-        f.write(f'Challenge Score: {challenge_score:.3f}\n')
+        f.write(f'Challenge Score: {score:.3f}\n')
         f.write(f'Sensitivity: {sensitivity:.3f}\n')
         f.write(f'Positive Predictive Value: {ppv:.3f}\n')
+        f.write(f'Accuracy: {accuracy:.3f}\n')
