@@ -54,9 +54,9 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
         # Save Challenge outputs.
 
         # Create a folder for the Challenge outputs if it does not already exist.
-        os.makedirs(output_folder, exist_ok=True)                          
-        output_file = os.path.join(output_folder, outcomes + '.txt')                     
-        save_challenge_outputs(output_file, patient_ids, prediction_binary, prediction_probability)    
+    os.makedirs(output_folder, exist_ok=True)                          
+    output_file = os.path.join(output_folder, outcomes + '.txt')                     
+    save_challenge_outputs(output_file, patient_ids, prediction_binary, prediction_probability)    
 
     if verbose >= 1:
         print('Done!')
