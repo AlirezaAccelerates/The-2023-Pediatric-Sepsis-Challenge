@@ -62,7 +62,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
         print('Done!')
   
 
- if __name__ == '__main__':
+if __name__ == '__main__':
     # Parse the arguments.
     if not (len(sys.argv) == 4 or len(sys.argv) == 5):
         raise Exception('Include the model, data, and output folders as arguments, e.g., python run_model.py model data outputs.')
