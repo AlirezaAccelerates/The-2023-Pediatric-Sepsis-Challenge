@@ -33,7 +33,7 @@ def save_challenge_outputs(output_folder, patient_ids, prediction_binary, predic
           for (i, p, b) in zip(patient_ids, prediction_probability, prediction_binary):
               f.write('%d|%g|%d\n' % (i, p, b))
               
-     return output_string
+    return output_string
   
 
 # Load the Challenge predictions for all of the patients.
