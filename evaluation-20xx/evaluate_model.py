@@ -75,25 +75,25 @@ def compute_accuracy(tn, fp, fn, tp):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--labels", required=True, help="Directory of ground truth labels")
-    parser.add_argument("--outputs", required=True, help="Directory of model's outputs")
-    parser.add_argument("--results", default='results', help="Directory to store model evaluation results")
-    args = vars(parser.parse_args())
 
-    os.makedirs(args['results'], exist_ok=True)
-    
     # Compute the scores for the model outputs.
-    score, sensitivity, ppv, accuracy = evaluate_model(args['labels'], args['outputs'])
+    scores = evaluate_model(sys.argv[1], sys.argv[2])
+    
+    # Unpack the scores.
+    score, sensitivity, ppv, accuracy = scores
+    
+    # Construct a string with scores.
+    output_string = \
+        'Challenge Score: {:.3f}\n'.format(score) + \
+        'Sensitivity: {:.3f}\n'.format(sensitivity) + \
+        'Positive Predictive Value: {:.3f}\n'.format(ppv) + \
+        'Accuracy: {:.3f}\n'.format(accuracy)
 
-    # Print results and write to file
-    print(f"Challenge Score: {score:.3f}")
-    print(f"Sensitivity: {sensitivity:.3f}")
-    print(f"Positive Predictive Value: {ppv:.3f}")
-    print(f"Accuracy: {accuracy:.3f}")
+    
+    # Output the scores to screen and/or a file.
+    if len(sys.argv) == 3:
+        print(output_string)
+    elif len(sys.argv) == 4:
+        with open(sys.argv[3], 'w') as f:
+            f.write(output_string)
 
-    with open(f"{args['results']}/results.txt", 'w') as f:
-        f.write(f'Challenge Score: {score:.3f}\n')
-        f.write(f'Sensitivity: {sensitivity:.3f}\n')
-        f.write(f'Positive Predictive Value: {ppv:.3f}\n')
-        f.write(f'Accuracy: {accuracy:.3f}\n')
