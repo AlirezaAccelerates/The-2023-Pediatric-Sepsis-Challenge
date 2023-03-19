@@ -22,7 +22,6 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     # You can use this function to perform tasks, such as loading your models, that you only need to perform once.
     model = load_challenge_model(model_folder, verbose) ### Teams: Implement this function!!!
     
-    
     # Find the Challenge data.
     if verbose >= 1:
         print('Extracting features and labels from the Challenge data...')
@@ -55,7 +54,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
 
     # Create a folder for the Challenge outputs if it does not already exist.
     os.makedirs(output_folder, exist_ok=True)                          
-    output_file = os.path.join(output_folder, outcomes + '.txt')                     
+    output_file = os.path.join(output_folder, 'outputs' + '.txt')                     
     save_challenge_outputs(output_file, patient_ids, prediction_binary, prediction_probability)    
 
     if verbose >= 1:
