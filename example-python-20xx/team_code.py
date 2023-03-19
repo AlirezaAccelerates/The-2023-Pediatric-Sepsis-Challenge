@@ -77,7 +77,7 @@ def run_challenge_model(model, data_folder, verbose):
     prediction_model = model['prediction_model']
 
     # Load data.
-    patient_ids, data, label, features = load_challenge_data(data_folder)
+    _, data, label, features = load_challenge_data(data_folder)
     
     data = pd.get_dummies(data)
     
@@ -86,9 +86,9 @@ def run_challenge_model(model, data_folder, verbose):
 
     # Apply models to features.
     prediction_binary = prediction_model.predict(data_imputed)[0]
-    prediction_probability = prediction_model.predict_proba(data_imputed)[:, 1]
+    prediction_probability = prediction_model.predict_proba(data_imputed)[0, 1]
 
-    return patient_ids, prediction_binary, prediction_probability
+    return prediction_binary, prediction_probability
 
 
 ################################################################################
