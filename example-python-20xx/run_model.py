@@ -38,7 +38,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     
     # Run the team's model on the Challenge data.
     if verbose >= 1:
-        print('Running the Challenge models on the Challenge data...')
+        print('Running the Challenge model on the Challenge data...')
     
     # Allow or disallow the models to fail on parts of the data; this can be helpful for debugging.
     try:
