@@ -77,14 +77,14 @@ def run_challenge_model(model, data_folder, verbose):
     prediction_model = model['prediction_model']
 
     # Load data.
-    _, data, label, features = load_challenge_data(data_folder)
+    patient_ids, data, label, features = load_challenge_data(data_folder)
     
     data = pd.get_dummies(data)
     
     # Impute missing data.
     data_imputed = imputer.transform(data)
 
-    # Apply models to features.
+    # Apply model to data.
     prediction_binary = prediction_model.predict(data_imputed)[0]
     prediction_probability = prediction_model.predict_proba(data_imputed)[0, 1]
 
