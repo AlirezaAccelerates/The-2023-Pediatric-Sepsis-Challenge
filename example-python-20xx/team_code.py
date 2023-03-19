@@ -29,7 +29,7 @@ def train_challenge_model(data_folder, model_folder, verbose):
     if verbose >= 1:
         print('Extracting features and labels from the Challenge data...')
         
-    patient_ids, data, label, features = load_challenge_data(data_folder, model_folder)
+    patient_ids, data, label, features = load_challenge_data(data_folder)
     num_patients = len(patient_ids)
 
     if num_patients==0:
