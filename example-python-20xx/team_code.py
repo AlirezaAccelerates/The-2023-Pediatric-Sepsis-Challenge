@@ -85,8 +85,8 @@ def run_challenge_model(model, data_folder, verbose):
     data_imputed = imputer.transform(data)
 
     # Apply model to data.
-    prediction_binary = prediction_model.predict(data_imputed)[0]
-    prediction_probability = prediction_model.predict_proba(data_imputed)[0, 1]
+    prediction_binary = prediction_model.predict(data_imputed)[:]
+    prediction_probability = prediction_model.predict_proba(data_imputed)[:, 1]
 
     return prediction_binary, prediction_probability
 
