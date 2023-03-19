@@ -69,7 +69,7 @@ def train_challenge_model(data_folder, model_folder, verbose):
 # arguments of this function.
 def load_challenge_model(model_folder, verbose):
     print('Loading the model...')
-    filename = os.path.join(model_folder, 'models.sav')
+    filename = os.path.join(model_folder, 'model.sav')
     return joblib.load(filename)
 
 def run_challenge_model(model, data_folder, verbose):
