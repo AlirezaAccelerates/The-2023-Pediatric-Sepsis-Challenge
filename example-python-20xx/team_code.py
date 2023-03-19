@@ -79,6 +79,8 @@ def run_challenge_model(model, data_folder, verbose):
     # Load data.
     patient_ids, data, label, features = load_challenge_data(data_folder)
     
+    data = pd.get_dummies(data)
+    
     # Impute missing data.
     features = imputer.transform(data)
 
