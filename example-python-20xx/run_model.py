@@ -27,7 +27,7 @@ def run_model(model_folder, data_folder, output_folder, allow_failures, verbose)
     if verbose >= 1:
         print('Extracting features and labels from the Challenge data...')
         
-    patient_ids, data, label, features = load_challenge_data(data_folder, model_folder)
+    patient_ids, data, label, features = load_challenge_data(data_folder)
     num_patients = len(patient_ids)
 
     if num_patients==0:
