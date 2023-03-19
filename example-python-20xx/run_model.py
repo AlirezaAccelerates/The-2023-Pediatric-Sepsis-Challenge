@@ -11,7 +11,7 @@
 
 import numpy as np, scipy as sp, os, sys
 from helper_code import *
-from team_code import load_challenge_models, run_challenge_models
+from team_code import load_challenge_model, run_challenge_model
 
 # Run model.
 def run_model(model_folder, data_folder, output_folder, allow_failures, verbose):
