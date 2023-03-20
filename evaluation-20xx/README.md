@@ -1,8 +1,8 @@
-# Scoring code for the George B. Moody PhysioNet Challenge 20xx
+# Scoring code for The 2023 Pediatric Sepsis Challenge
 
-This repository contains the Python and MATLAB evaluation code for the George B. Moody PhysioNet Challenge 20xx.
+This repository contains the Python and MATLAB evaluation code for The 2023 Pediatric Sepsis Challenge.
 
-The `evaluate_model` script evaluates the outputs of your models using the evaluation metric that is described on the [webpage](https://physionetchallenges.org/20x/) for the 20xx Challenge. This script reports multiple evaluation metrics, so check the [scoring section](https://physionetchallenges.org/20xx/#scoring) of the webpage to see how we evaluate and rank your models.
+The `evaluate_model` script evaluates the outputs of your models using the evaluation metric that is described on the [webpage](https://physionetchallenges.org/20x/) for the 2023 Challenge. This script reports multiple evaluation metrics, so check the [scoring section](https://physionetchallenges.org/20xx/#scoring) of the webpage to see how we evaluate and rank your models.
 
 ## Python
 
@@ -39,7 +39,7 @@ Please see the [Challenge website](https://physionetchallenges.org/20xx/) for mo
 ## Useful links
 
 - [Challenge website](https://physionetchallenges.org/20xx/)
-- [MATLAB example code](https://github.com/physionetchallenges/matlab-example-20xx)
-- [Python example code](https://github.com/physionetchallenges/python-example-20xx)
+- [MATLAB example code](https://github.com/physionetchallenges/matlab-example-2023)
+- [Python example code](https://github.com/physionetchallenges/python-example-2023)
 - [Frequently asked questions (FAQ) for this year's Challenge](https://physionetchallenges.org/2023/faq/)
 
