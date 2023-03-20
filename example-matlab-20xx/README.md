@@ -1,8 +1,8 @@
-# MATLAB example code for the George B. Moody PhysioNet Challenge 2023
+# MATLAB example code for The 2023 Pediatric Sepsis Challenge
 
 ## What's in this repository?
 
-This repository contains a simple example to illustrate how to format a MATLAB entry for the George B. Moody PhysioNet Challenge 20xx. You can try it by running the following commands on the Challenge training sets. These commands should take a few minutes or less to run from start to finish on a recent personal computer.
+This repository contains a simple example to illustrate how to format a MATLAB entry for The 2023 Pediatric Sepsis Challenge. You can try it by running the following commands on the Challenge training sets. These commands should take a few minutes or less to run from start to finish on a recent personal computer.
 
 For this example, we implemented a random forest model with several features. You can use different models, features, and libraries for your entry. This simpple example is designed **not** not to perform well, so you should **not** use it as a baseline for your model's performance.
 
@@ -29,7 +29,7 @@ where
 - `test_data` (input; required) is a folder with the validation or test data files (you can use the training data for debugging and cross-validation), and
 - `test_outputs` (output; required) is a folder for saving your model outputs.
 
-You can evaluate your model by pulling or downloading the [evaluation code](https://github.com/physionetchallenges/evaluation-20xx), installing Python, and running
+You can evaluate your model by pulling or downloading the [evaluation code](https://github.com/physionetchallenges/evaluation-2023), installing Python, and running
 
     evaluate_model(labels, outputs, scores.csv)
 
@@ -68,8 +68,8 @@ Please see the [Challenge website](https://physionetchallenges.org/2023/) for mo
 ## Useful links
 
 - [Challenge website](https://physionetchallenges.org/20xx/)
-- [Python example code](https://github.com/physionetchallenges/python-model-20xx)
-- [Scoring code](https://github.com/physionetchallenges/evaluation-20xx)
+- [Python example code](https://github.com/physionetchallenges/python-model-2023)
+- [Scoring code](https://github.com/physionetchallenges/evaluation-2023)
 - [Frequently asked questions (FAQ) for this year's Challenge](https://physionetchallenges.org/20xx/faq/)
 - [Frequently asked questions (FAQ) about the Challenges in general](https://physionetchallenges.org/faq/)
 
