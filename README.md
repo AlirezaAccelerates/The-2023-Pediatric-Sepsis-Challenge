@@ -1,1 +1,1 @@
-# George B. Moody PhysioNet Challenge 20xx Testing Framework
+# The 2023 Pediatric Sepsis Challenge Testing Framework
