@@ -1,8 +1,8 @@
-# Python example code for the George B. Moody PhysioNet Challenge 2023
+# Python example code for The 2023 Pediatric Sepsis Challenge
 
 ## What's in this repository?
 
-This repository contains a simple example to illustrate how to format a Python entry for the George B. Moody PhysioNet Challenge 20xx. You can try it by running the following commands on the Challenge training sets. These commands should take a few minutes or less to run from start to finish on a recent personal computer.
+This repository contains a simple example to illustrate how to format a Python entry for The 2023 Pediatric Sepsis Challenge. You can try it by running the following commands on the Challenge training sets. These commands should take a few minutes or less to run from start to finish on a recent personal computer.
 
 For this example, we implemented a random forest model with several features. You can use different models, features, and libraries for your entry. This simpple example is designed **not** not to perform well, so you should **not** use it as a baseline for your model's performance.
 
@@ -82,17 +82,17 @@ If you have trouble running your code, then please try the follow steps to run t
 4. Build a Docker image and run the example code in your terminal.
 
         user@computer:~/example$ ls
-        model  python-example-20xx  test_data  test_outputs  training_data
+        model  python-example-2023  test_data  test_outputs  training_data
 
-        user@computer:~/example$ cd python-example-20xx/
+        user@computer:~/example$ cd python-example-2023/
 
-        user@computer:~/example/python-example-20xx$ docker build -t image .
+        user@computer:~/example/python-example-2023$ docker build -t image .
 
         Sending build context to Docker daemon  [...]kB
         [...]
         Successfully tagged image:latest
 
-        user@computer:~/example/python-example-20xx$ docker run -it -v ~/example/model:/challenge/model -v ~/example/test_data:/challenge/test_data -v ~/example/test_outputs:/challenge/test_outputs -v ~/example/training_data:/challenge/training_data image bash
+        user@computer:~/example/python-example-2023$ docker run -it -v ~/example/model:/challenge/model -v ~/example/test_data:/challenge/test_data -v ~/example/test_outputs:/challenge/test_outputs -v ~/example/training_data:/challenge/training_data image bash
 # Should be editted
         root@[...]:/challenge# ls
             Dockerfile             README.md         test_outputs
@@ -117,8 +117,8 @@ Please see the [Challenge website](https://physionetchallenges.org/20xx/) for mo
 ## Useful links
 
 * [Challenge website](https://physionetchallenges.org/20xx/)
-* [MATLAB example code](https://github.com/physionetchallenges/matlab-example-20xx)
-* [Scoring code](https://github.com/physionetchallenges/evaluation-20xx)
+* [MATLAB example code](https://github.com/physionetchallenges/matlab-example-2023)
+* [Scoring code](https://github.com/physionetchallenges/evaluation-2023)
 * [Frequently asked questions (FAQ) for this year's Challenge](https://physionetchallenges.org/20xx/faq/)
 * [Frequently asked questions (FAQ) about the Challenges in general](https://physionetchallenges.org/faq/)
 
