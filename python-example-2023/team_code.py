@@ -9,6 +9,7 @@
 #
 ################################################################################
 
+"""
 from helper_code import *
 import numpy as np, os, sys
 import pandas as pd
@@ -102,3 +103,81 @@ def save_challenge_model(model_folder, imputer, prediction_model):
     d = {'imputer': imputer, 'prediction_model': prediction_model}
     filename = os.path.join(model_folder, 'model.sav')
     joblib.dump(d, filename, protocol=0)
+"""
+import xgboost as xgb
+
+# Train your model.
+def train_challenge_model(data_folder, model_folder, verbose):
+    # Find the Challenge data.
+    if verbose >= 1:
+        print('Extracting features and labels from the Challenge data...')
+        
+    patient_ids, data, label, features = load_challenge_data(data_folder)
+    num_patients = len(patient_ids)
+
+    if num_patients == 0:
+        raise FileNotFoundError('No data is provided.')
+        
+    # Create a folder for the model if it does not already exist.
+    os.makedirs(model_folder, exist_ok=True)
+    
+    # Train the models.
+    if verbose >= 1:
+        print('Training the Challenge models on the Challenge data...')
+    
+    data = pd.get_dummies(data)
+        
+    # Define parameters for XGBoost classifier.
+    params = {
+        'objective': 'binary:logistic',
+        'eval_metric': 'auc',
+        'tree_method': 'hist',  # faster tree construction method
+        'grow_policy': 'lossguide',  # split at nodes that yield the largest decrease in loss
+        'max_depth': 6,
+        'eta': 0.1,
+        'subsample': 0.8,
+        'colsample_bytree': 0.8,
+        'seed': 42,
+    }
+
+    # Split the data into training and validation sets.
+    train_data, train_label, val_data, val_label = split_data(data, label)
+
+    # Convert data to XGBoost DMatrix format.
+    dtrain = xgb.DMatrix(train_data, label=train_label)
+    dval = xgb.DMatrix(val_data, label=val_label)
+
+    # Train the model.
+    bst = xgb.train(params, dtrain, num_boost_round=1000, evals=[(dtrain, 'train'), (dval, 'val')], verbose_eval=50,
+                    early_stopping_rounds=50)
+
+    # Save the model.
+    save_challenge_model(model_folder, bst)
+
+    if verbose >= 1:
+        print('Done!')
+
+# Load your trained model. This function is *required*. You should edit this function to add your code, but do *not* change the
+# arguments of this function.
+def load_challenge_model(model_folder, verbose):
+    print('Loading the model...')
+    filename = os.path.join(model_folder, 'model.bin')
+    return xgb.Booster({'nthread': 4})  # initialize empty Booster
+    bst.load_model(filename)  # load model from file
+
+def run_challenge_model(model, data_folder, verbose):
+    bst = model
+
+    # Load data.
+    patient_ids, data, label, features = load_challenge_data(data_folder)
+    
+    data = pd.get_dummies(data)
+    
+    # Apply model to data.
+    dtest = xgb.DMatrix(data)
+    prediction_probability = bst.predict(dtest)
+
+    # Convert probabilities to binary predictions using a threshold of 0.5.
+    prediction_binary = (prediction_probability >= 0.5).astype(int)
+
+    return patient_ids, prediction_binary, prediction_probability
