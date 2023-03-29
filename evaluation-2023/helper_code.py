@@ -46,8 +46,7 @@ def load_challenge_predictions(folder):
     prediction_binary = predictions[:,2].astype(int)
     
     return patient_ids, prediction_probability, prediction_binary
-        
-           
+             
         
 ### Other helper functions
 
