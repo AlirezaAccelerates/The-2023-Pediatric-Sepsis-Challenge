@@ -31,7 +31,7 @@ where
 
 - `model` (input; required) is a folder for loading your model, and
 - `test_data` (input; required) is a folder with the validation or test data files (you can use the training data for debugging and cross-validation), and
-- `test_outputs` is a folder for saving your model outputs.
+- `test_outputs` (output; required) is a folder for saving your model outputs.
 
 The [Challenge website](https://physionetchallenges.org/20xx/#data) provides a training database with a description of the contents and structure of the data files.
 
