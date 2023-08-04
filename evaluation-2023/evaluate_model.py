@@ -68,7 +68,7 @@ def compute_accuracy(tn, fp, fn, tp):
     return (tp + tn) / (tn + fp + fn + tp)
 
 # Compute challenge score .
-def compute_challenge_score(labels, outputs):
+def challenge_score(labels, outputs):
     # Check the data.
     assert len(labels) == len(outputs)
 
