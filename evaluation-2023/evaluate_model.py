@@ -122,8 +122,8 @@ def challenge_score(labels, outputs):
             else:
                 fpr[l] = float('nan')
 
-        # Find the threshold such that FPR <= 0.05.
-        max_fpr = 0.05
+        # Find the threshold such that FPR <= 0.20.
+        max_fpr = 0.20
         if np.any(fpr <= max_fpr):
             l = max(l for l, x in enumerate(fpr) if x <= max_fpr)
             tp_t = tp[l]
@@ -136,7 +136,7 @@ def challenge_score(labels, outputs):
             fn_t = fn[0]
             tn_t = tn[0]
 
-    # Compute the TPR at FPR <= 0.05.
+    # Compute the TPR at FPR <= 0.20.
     if tp_t + fn_t > 0:
         max_tpr = tp_t / (tp_t + fn_t)
     else:
