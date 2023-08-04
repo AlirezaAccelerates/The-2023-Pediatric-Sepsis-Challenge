@@ -67,7 +67,7 @@ def compute_sensitivity(tp, fn):
 def compute_accuracy(tn, fp, fn, tp):
     return (tp + tn) / (tn + fp + fn + tp)
 
-# Compute challenge score .
+# Compute challenge score.
 def challenge_score(labels, outputs):
     # Check the data.
     assert len(labels) == len(outputs)
@@ -86,7 +86,7 @@ def challenge_score(labels, outputs):
 
     idx = np.argsort(outputs)[::-1]
 
-    # Initialize the TPs, FPs, FNs, and TNs with no positive outputs.
+    # Initialize the TP, FP, FN, and TN with no positive outputs.
     tp = np.zeros(num_thresholds)
     fp = np.zeros(num_thresholds)
     fn = np.zeros(num_thresholds)
@@ -97,7 +97,7 @@ def challenge_score(labels, outputs):
     fn[0] = np.sum(labels == 1)
     tn[0] = np.sum(labels == 0)
 
-    # Update the TPs, FPs, FNs, and TNs using the values at the previous threshold.
+    # Update the TP, FP, FN, and TN using the values at the previous threshold.
     k = 0
     for l in range(1, num_thresholds):
         tp[l] = tp[l-1]
@@ -126,19 +126,19 @@ def challenge_score(labels, outputs):
         max_fpr = 0.05
         if np.any(fpr <= max_fpr):
             l = max(l for l, x in enumerate(fpr) if x <= max_fpr)
-            tp = tp[l]
-            fp = fp[l]
-            fn = fn[l]
-            tn = tn[l]
+            tp_t = tp[l]
+            fp_t = fp[l]
+            fn_t = fn[l]
+            tn_t = tn[l]
         else:
-            tp = tp[0]
-            fp = fp[0]
-            fn = fn[0]
-            tn = tn[0]
+            tp_t = tp[0]
+            fp_t = fp[0]
+            fn_t = fn[0]
+            tn_t = tn[0]
 
     # Compute the TPR at FPR <= 0.05.
-    if tp + fn > 0:
-        max_tpr = tp / (tp + fn)
+    if tp_t + fn_t > 0:
+        max_tpr = tp_t / (tp_t + fn_t)
     else:
         max_tpr = float('nan')
 
