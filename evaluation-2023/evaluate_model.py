@@ -118,7 +118,7 @@ def challenge_score(labels, outputs):
         fpr = np.zeros(num_thresholds)
         for l in range(num_thresholds):
             if tp[l] + fn[l] > 0:
-                fpr[l] = float(fp[l]) / float(tp[l] + fn[l])
+                fpr[l] = float(fp[l]) / float(fp[l] + tn[l])
             else:
                 fpr[l] = float('nan')
 
